@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 
 export default class Mynav extends Component {
     render() {
-
         var lists = []
         var data = this.props.data
         var i = 0
