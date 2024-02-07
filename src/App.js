@@ -9,6 +9,7 @@ export default class App extends Component {
     super(props)
     this.state = {
       subject:{title:'React',desc:'Sing page Application'},
+      welcome:{title:'Welcome',desc:'Welcome to React'},
       menus:[
         {id:1,title:'HTML' ,desc:'Hypertext'},
         {id:2,title:'CSS' ,desc:'CSS is for design'},
@@ -18,6 +19,10 @@ export default class App extends Component {
   }
 
   render() {
+    // var 
+    // if () {
+      
+    // }
     return (
       <div className='App'>
         <Myheader 
@@ -25,7 +30,10 @@ export default class App extends Component {
         desc={this.state.subject.desc}
         />
         <Mynav data={this.state.menus} />
-        <Myarticle title='HTML' desc='Hypertext Markup Language'/>
+        <Myarticle
+          title={this.state.welcome.title} 
+          desc={this.state.welcome.desc}
+        />
       </div>
     )
   }
