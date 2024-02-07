@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import Myheader from './Myheader'
+import Mynav from './Mynav'
+import Myarticle from './Myarticle'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+  
+  constructor(props) {
+    super(props)
+    this.state = {
+      subject:{title:'React',desc:'Sing page Application'},
+      menus:[
+        {id:1,title:'HTML' ,desc:'Hypertext'},
+        {id:2,title:'CSS' ,desc:'CSS is for design'},
+        {id:3,title:'JavaScript' ,desc:'javascript is for interactive'}
+      ]
+    }
+  }
+
+  render() {
+    return (
+      <div className='App'>
+        <Myheader 
+        title={this.state.subject.title} 
+        desc={this.state.subject.desc}
+        />
+        <Mynav data={this.state.menus} />
+        <Myarticle title='HTML' desc='Hypertext Markup Language'/>
+      </div>
+    )
+  }
 }
-
-export default App;
