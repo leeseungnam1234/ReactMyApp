@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { Component } from 'react'
 import Myheader from './Myheader'
 import Mynav from './Mynav'
@@ -8,6 +9,7 @@ export default class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      mode:'read',
       subject:{title:'React',desc:'Sing page Application'},
       welcome:{title:'Welcome',desc:'Welcome to React'},
       menus:[
@@ -19,20 +21,37 @@ export default class App extends Component {
   }
 
   render() {
-    // var 
-    // if () {
-      
-    // }
+    var _title,_desc = null
+    if (this.state.mode === 'welcome') {
+      _title = this.state.welcome.title
+      _desc = this.state.welcome.desc
+    } else if (this.state.mode === 'read'){
+      _title = this.state.menus.title
+      _desc = this.state.menus.desc
+    }
+
     return (
       <div className='App'>
-        <Myheader 
+        {/* <Myheader 
         title={this.state.subject.title} 
         desc={this.state.subject.desc}
-        />
+        /> */}
+        <header>
+          <h1 className='logo'><a 
+          href='/'
+          onClick={function(e){
+            e.preventDefault()
+            this.setState({
+              mode:'welcome'
+            })
+          }.bind(this)}
+          >{this.state.subject.title}</a></h1>
+          <p>{this.state.subject.desc}</p>
+        </header>
         <Mynav data={this.state.menus} />
         <Myarticle
-          title={this.state.welcome.title} 
-          desc={this.state.welcome.desc}
+          title={_title} 
+          desc={_desc}
         />
       </div>
     )
