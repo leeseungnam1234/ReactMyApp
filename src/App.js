@@ -9,7 +9,8 @@ export default class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      mode:'read',
+      mode:'welcome',
+      selected_id:2,
       subject:{title:'React',desc:'Sing page Application'},
       welcome:{title:'Welcome',desc:'Welcome to React'},
       menus:[
@@ -26,29 +27,39 @@ export default class App extends Component {
       _title = this.state.welcome.title
       _desc = this.state.welcome.desc
     } else if (this.state.mode === 'read'){
-      _title = this.state.menus.title
-      _desc = this.state.menus.desc
+      var i = 0;
+      // while () {
+        
+      //   i++
+      // }
+      _title = this.state.menus[0].title
+      _desc = this.state.menus[0].desc
     }
 
     return (
       <div className='App'>
-        {/* <Myheader 
+        <Myheader 
         title={this.state.subject.title} 
         desc={this.state.subject.desc}
-        /> */}
-        <header>
-          <h1 className='logo'><a 
-          href='/'
-          onClick={function(e){
-            e.preventDefault()
+        onChangePage = {
+          function () {
             this.setState({
               mode:'welcome'
-            })
-          }.bind(this)}
-          >{this.state.subject.title}</a></h1>
-          <p>{this.state.subject.desc}</p>
-        </header>
-        <Mynav data={this.state.menus} />
+            });
+          }.bind(this)
+        }
+        />
+        <Mynav 
+          data={this.state.menus}
+          onChangePage = {
+            function (id) {
+              this.setState({
+                mode:'read',
+                selected_id:Number(id)
+              });
+            }.bind(this)
+          }
+        />
         <Myarticle
           title={_title} 
           desc={_desc}
