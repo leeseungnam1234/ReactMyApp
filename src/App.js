@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import Myheader from './Myheader'
 import Mynav from './Mynav'
 import Myarticle from './Myarticle'
+import Controls from './Controls'
 
 export default class App extends Component {
   
@@ -23,17 +24,25 @@ export default class App extends Component {
 
   render() {
     var _title,_desc = null
+
     if (this.state.mode === 'welcome') {
       _title = this.state.welcome.title
       _desc = this.state.welcome.desc
     } else if (this.state.mode === 'read'){
+
       var i = 0;
-      // while () {
-        
-      //   i++
-      // }
-      _title = this.state.menus[0].title
-      _desc = this.state.menus[0].desc
+      while (i < this.state.menus.length ) {
+        var data = this.state.menus[i]
+        if (data.id === this.state.selected_id) {
+          _title = data.title
+          _desc = data.desc
+          break
+        }
+        i++
+      }
+
+      // _title = this.state.menus[0].title
+      // _desc = this.state.menus[0].desc
     }
 
     return (
@@ -63,6 +72,15 @@ export default class App extends Component {
         <Myarticle
           title={_title} 
           desc={_desc}
+        />
+        <Controls
+           onChangePage = {
+            function (_mode) {
+              this.setState({
+                mode:'_mode'
+              });
+            }.bind(this)
+          }
         />
       </div>
     )
