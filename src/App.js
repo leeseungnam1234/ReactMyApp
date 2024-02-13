@@ -4,6 +4,8 @@ import Myheader from './Myheader'
 import Mynav from './Mynav'
 import Myarticle from './Myarticle'
 import Controls from './Controls'
+import CreateArticle from './CreateArticle'
+import ReadArticle from './ReadArticle'
 
 export default class App extends Component {
   
@@ -23,11 +25,12 @@ export default class App extends Component {
   }
 
   render() {
-    var _title,_desc = null
+    var _title,_desc ,_article= null
 
     if (this.state.mode === 'welcome') {
       _title = this.state.welcome.title
       _desc = this.state.welcome.desc
+      _article = <Myarticle title={_title} desc={_desc}/>
     } else if (this.state.mode === 'read'){
 
       var i = 0;
@@ -40,9 +43,13 @@ export default class App extends Component {
         }
         i++
       }
-
+      _article = <Myarticle title={_title} desc={_desc}/>
       // _title = this.state.menus[0].title
       // _desc = this.state.menus[0].desc
+    }else if (this.state.mode === 'create'){
+
+    }else if (this.state.mode === 'update'){
+      
     }
 
     return (
@@ -69,12 +76,9 @@ export default class App extends Component {
             }.bind(this)
           }
         />
-        <Myarticle
-          title={_title} 
-          desc={_desc}
-        />
+        {_article}
         <Controls
-           onChangePage = {
+          onChangePage = {
             function (_mode) {
               this.setState({
                 mode:'_mode'
